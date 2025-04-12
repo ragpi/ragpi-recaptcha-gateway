@@ -48,7 +48,7 @@ export async function recaptchaVerification(
     if (!data.success) {
       logger.error({ data }, 'reCAPTCHA verification failed.');
       res.status(403).json({
-        error: 'reCAPTCHA verification failed.',
+        error: 'verification_failed',
       });
       return;
     }
@@ -56,10 +56,10 @@ export async function recaptchaVerification(
     if (data.score < config.RECAPTCHA_SCORE_THRESHOLD) {
       logger.error(
         { data },
-        `reCAPTCHA score is below threshold (${data.score} < ${config.RECAPTCHA_SCORE_THRESHOLD})`,
+        `reCAPTCHA score is below threshold ${config.RECAPTCHA_SCORE_THRESHOLD}`,
       );
       res.status(403).json({
-        error: 'reCAPTCHA verification failed.',
+        error: 'verification_failed',
       });
       return;
     }
