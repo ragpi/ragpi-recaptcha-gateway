@@ -16,13 +16,6 @@ const ConfigSchema = z.object({
     required_error: 'RAGPI_BASE_URL is required',
   }),
   RAGPI_API_KEY: z.string().optional(),
-  RAGPI_SOURCES: z
-    .string()
-    .optional()
-    .transform((str) => {
-      if (!str) return [];
-      return str.split(',').filter(Boolean);
-    }),
   CORS_ORIGINS: z
     .string()
     .optional()
